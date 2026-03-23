@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr. Fit Multi Gym and Fitness Studio | Serampore Fitness Club</title>
+  <meta name="description" content="Dr. Fit Multi Gym and Fitness Studio in Serampore. Premium training environment, strength equipment, coaching support, flexible plans, and a focused fitness atmosphere." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#050505;
+      --bg-soft:#0c0c0d;
+      --panel:rgba(255,255,255,.06);
+      --panel-2:#101113;
+      --line:rgba(255,255,255,.10);
+      --text:#f7f7f4;
+      --muted:#b8bec8;
+      --gold:#f0d178;
+      --gold-deep:#c79a2a;
+      --white-soft:rgba(255,255,255,.08);
+      --shadow:0 20px 60px rgba(0,0,0,.35);
+      --radius:28px;
+      --radius-sm:20px;
+      --ease:cubic-bezier(.22,1,.36,1);
+      --max:1220px;
+      --header-h:84px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 15% 15%, rgba(240,209,120,.07), transparent 24%),
+        radial-gradient(circle at 88% 8%, rgba(255,255,255,.05), transparent 20%),
+        radial-gradient(circle at 50% 110%, rgba(240,209,120,.05), transparent 26%),
+        var(--bg);
+      font-family:'Inter',system-ui,-apple-system,sans-serif;
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{display:block;width:100%;height:auto}
+    button{font:inherit}
+
+    .container{width:min(var(--max), calc(100% - 28px));margin-inline:auto}
+    .section{padding:88px 0;position:relative}
+    .grid{display:grid;gap:18px}
+
+    .topbar{
+      position:fixed;
+      top:14px;
+      left:0;
+      right:0;
+      z-index:40;
+      pointer-events:none;
+    }
+
+    .nav-shell{
+      width:min(1180px, calc(100% - 20px));
+      margin:0 auto;
+      min-height:var(--header-h);
+      border-radius:24px;
+      background:rgba(7,7,8,.7);
+      border:1px solid rgba(255,255,255,.10);
+      backdrop-filter:blur(16px);
+      box-shadow:0 16px 44px rgba(0,0,0,.30);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:14px 16px;
+      pointer-events:auto;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+
+    .brand-mark{
+      width:48px;
+      height:48px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      font-family:'Syne',sans-serif;
+      font-weight:800;
+      letter-spacing:.04em;
+      color:#101010;
+      background:linear-gradient(135deg,var(--gold),var(--gold-deep));
+      box-shadow:0 10px 24px rgba(199,154,42,.28);
+      flex:0 0 auto;
+    }
+
+    .brand-copy{min-width:0}
+    .brand-copy strong{
+      display:block;
+      font-size:1rem;
+      line-height:1.05;
+      white-space:nowrap;
+    }
+    .brand-copy span{
+      display:block;
+      color:var(--muted);
+      font-size:.76rem;
+      margin-top:3px;
+      white-space:nowrap;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    .nav-links a{
+      padding:10px 14px;
+      border-radius:999px;
+      color:#e8ebef;
+      font-size:.92rem;
+      transition:background .28s var(--ease), transform .28s var(--ease), color .28s var(--ease);
+    }
+
+    .nav-links a:hover{
+      background:rgba(255,255,255,.06);
+      transform:translateY(-1px);
+    }
+
+    .nav-right{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .status-chip{
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.04);
+      color:var(--gold);
+      font-size:.78rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      white-space:nowrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:52px;
+      padding:0 20px;
+      border-radius:999px;
+      font-weight:700;
+      transition:transform .3s var(--ease), box-shadow .3s var(--ease), background .3s var(--ease);
+    }
+
+    .btn:hover{transform:translateY(-2px)}
+
+    .btn-gold{
+      background:linear-gradient(135deg,var(--gold),var(--gold-deep));
+      color:#101010;
+      box-shadow:0 12px 32px rgba(199,154,42,.24);
+    }
+
+    .btn-dark{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      color:#fff;
+    }
+
+    .menu-btn{
+      display:none;
+      width:48px;
+      height:48px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.05);
+      color:#fff;
+      cursor:pointer;
+      flex:0 0 auto;
+    }
+
+    .menu-panel{
+      display:none;
+      position:fixed;
+      left:10px;
+      right:10px;
+      top:98px;
+      z-index:39;
+      background:rgba(8,8,9,.94);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:24px;
+      padding:14px;
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(14px);
+    }
+
+    .menu-panel a,
+    .menu-panel .btn{width:100%}
+    .menu-panel a{
+      display:block;
+      padding:14px 12px;
+      border-radius:16px;
+      color:#f1f3f6;
+    }
+    .menu-panel a:hover{background:rgba(255,255,255,.05)}
+    .menu-actions{display:grid;gap:10px;margin-top:10px}
+    .menu-panel.open{display:block}
+
+    .hero{
+      position:relative;
+      min-height:100vh;
+      padding:132px 0 56px;
+      display:flex;
+      align-items:center;
+      overflow:hidden;
+      isolation:isolate;
+    }
+
+    .hero-media,
+    .hero-overlay{
+      position:absolute;
+      inset:0;
+    }
+
+    .hero-media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:brightness(.34) contrast(1.05) saturate(.95);
+      transform:scale(1.06);
+    }
+
+    .hero-overlay{
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.86) 0%, rgba(0,0,0,.58) 44%, rgba(0,0,0,.84) 100%),
+        linear-gradient(180deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,.52) 100%);
+      z-index:0;
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 16px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+      backdrop-filter:blur(10px);
+      color:var(--gold);
+      font-size:.8rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:18px;
+    }
+
+    .eyebrow::before{
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--gold);
+      box-shadow:0 0 16px rgba(240,209,120,.7);
+    }
+
+    .hero h1{
+      margin:0 0 16px;
+      font-family:'Syne',sans-serif;
+      font-size:clamp(2.7rem, 6vw, 5.8rem);
+      line-height:.92;
+      letter-spacing:-.05em;
+      max-width:760px;
+    }
+
+    .hero h1 span{color:var(--gold)}
+
+    .hero-copy{
+      max-width:620px;
+      color:rgba(255,255,255,.82);
+      line-height:1.72;
+      font-size:1rem;
+      margin-bottom:26px;
+    }
+
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:28px}
+
+    .hero-stats{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+      max-width:760px;
+    }
+
+    .stat,
+    .card,
+    .plan,
+    .mini-gallery img,
+    .feature,
+    .location-box,
+    .contact-card,
+    .quote{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.05);
+      backdrop-filter:blur(12px);
+      box-shadow:var(--shadow);
+    }
+
+    .stat{
+      border-radius:22px;
+      padding:18px 16px;
+    }
+    .stat strong{display:block;font-size:1.06rem;margin-bottom:5px}
+    .stat span{display:block;color:var(--muted);font-size:.88rem;line-height:1.4}
+
+    .hero-side{display:grid;gap:16px}
+
+    .card{
+      border-radius:28px;
+      padding:24px;
+    }
+
+    .card h3,
+    .plan h3,
+    .location-box h3,
+    .contact-card h3{
+      margin:0 0 10px;
+      font-size:1.2rem;
+    }
+
+    .list{display:grid;gap:10px;margin-top:14px}
+    .list div{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:16px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.06);
+      color:#edf0f5;
+      font-size:.95rem;
+    }
+
+    .dot{
+      width:9px;
+      height:9px;
+      border-radius:50%;
+      background:var(--gold);
+      flex:0 0 auto;
+    }
+
+    .offer-card{
+      background:linear-gradient(135deg, rgba(240,209,120,.16), rgba(255,255,255,.05));
+    }
+
+    .offer-card p,
+    .card p,
+    .plan p,
+    .location-box p,
+    .contact-card p,
+    .quote p{color:var(--muted);line-height:1.68;margin:0}
+
+    .kicker{
+      color:var(--gold);
+      font-size:.8rem;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      margin:0 0 10px;
+      font-weight:800;
+    }
+
+    .section-head{max-width:720px;margin-bottom:24px}
+    .section-head h2{
+      margin:0 0 10px;
+      font-family:'Syne',sans-serif;
+      font-size:clamp(2rem, 4.8vw, 3.9rem);
+      line-height:.95;
+      letter-spacing:-.05em;
+    }
+    .section-head p{margin:0;color:var(--muted);line-height:1.7}
+
+    .facilities{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0,1fr));
+      gap:16px;
+    }
+
+    .feature{
+      border-radius:24px;
+      padding:20px;
+    }
+    .feature-icon{
+      width:46px;
+      height:46px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg,var(--gold),var(--gold-deep));
+      color:#101010;
+      font-weight:800;
+      margin-bottom:14px;
+    }
+    .feature strong{display:block;font-size:1rem;margin-bottom:8px}
+    .feature span{display:block;color:var(--muted);font-size:.9rem;line-height:1.55}
+
+    .plans{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:16px;
+    }
+
+    .plan{
+      border-radius:28px;
+      padding:24px;
+      position:relative;
+      overflow:hidden;
+    }
+    .plan.highlight{
+      background:linear-gradient(180deg, rgba(240,209,120,.12), rgba(255,255,255,.06));
+      transform:translateY(-4px);
+    }
+    .plan-price{
+      font-family:'Syne',sans-serif;
+      font-size:2rem;
+      margin:10px 0 10px;
+      color:#fff;
+    }
+    .plan small{
+      display:inline-block;
+      padding:8px 11px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      color:var(--gold);
+      text-transform:uppercase;
+      letter-spacing:.1em;
+      font-size:.72rem;
+    }
+
+    .mini-gallery{
+      display:grid;
+      grid-template-columns:1.15fr .85fr .85fr;
+      gap:16px;
+    }
+    .mini-gallery img{
+      border-radius:26px;
+      height:100%;
+      object-fit:cover;
+      min-height:260px;
+    }
+
+    .location-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:18px;
+      align-items:stretch;
+    }
+
+    .location-box,
+    .contact-card,
+    .quote{border-radius:28px;padding:24px}
+
+    .address-lines{display:grid;gap:10px;margin-top:14px}
+    .address-lines div{
+      padding:13px 14px;
+      border-radius:16px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.06);
+      color:#ecf0f5;
+    }
+
+    .contact-stack{display:grid;gap:18px}
+    .quote strong{display:block;margin-bottom:10px;font-size:1rem}
+
+    .footer{
+      padding:28px 0 110px;
+      color:#8d96a5;
+      text-align:center;
+      font-size:.92rem;
+    }
+
+    .sticky-cta{
+      position:fixed;
+      left:12px;
+      right:12px;
+      bottom:12px;
+      z-index:42;
+      display:none;
+      gap:10px;
+      padding:10px;
+      border-radius:22px;
+      background:rgba(7,7,8,.88);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:0 16px 38px rgba(0,0,0,.32);
+      backdrop-filter:blur(14px);
+    }
+    .sticky-cta a{flex:1}
+
+    .reveal{
+      opacity:0;
+      transform:translateY(26px);
+      transition:opacity .85s var(--ease), transform .85s var(--ease);
+      will-change:transform,opacity;
+    }
+    .reveal.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media (max-width: 1100px){
+      .hero-inner,
+      .location-grid,
+      .mini-gallery{grid-template-columns:1fr}
+      .facilities{grid-template-columns:repeat(2, minmax(0,1fr))}
+      .plans{grid-template-columns:1fr}
+      .plan.highlight{transform:none}
+    }
+
+    @media (max-width: 920px){
+      .nav-links,
+      .status-chip,
+      .nav-right > .btn{display:none}
+      .menu-btn{display:grid;place-items:center}
+      .hero{min-height:auto;padding:118px 0 42px}
+      .hero-stats{grid-template-columns:1fr}
+      .section{padding:72px 0}
+      .sticky-cta{display:flex}
+    }
+
+    @media (max-width: 640px){
+      .container{width:min(var(--max), calc(100% - 22px))}
+      .nav-shell{padding:12px 12px;min-height:74px;border-radius:20px}
+      .brand-mark{width:42px;height:42px;border-radius:14px;font-size:.95rem}
+      .brand-copy strong{font-size:.94rem}
+      .brand-copy span{font-size:.69rem}
+      .hero h1{font-size:clamp(2.2rem, 11vw, 3.8rem);line-height:.98}
+      .hero-copy{font-size:.94rem;line-height:1.62}
+      .hero-actions{display:grid;grid-template-columns:1fr;gap:10px}
+      .btn{width:100%}
+      .stat,.card,.plan,.location-box,.contact-card,.quote,.feature{border-radius:22px}
+      .facilities{grid-template-columns:1fr}
+      .mini-gallery img{min-height:220px}
+      .footer{padding-bottom:124px}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="nav-shell">
+      <a href="#home" class="brand" aria-label="Dr. Fit Multi Gym and Fitness Studio home">
+        <div class="brand-mark">DF</div>
+        <div class="brand-copy">
+          <strong>Dr. Fit Multi Gym</strong>
+          <span>Fitness Studio • Strength • Results</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#facilities">Facilities</a>
+        <a href="#plans">Plans</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#location">Location</a>
+        <a href="#location">Contact</a>
+      </nav>
+
+      <div class="nav-right">
+        <div class="status-chip">Serampore • Demo Site</div>
+        <a class="btn btn-gold" href="tel:8100169994">Call Now</a>
+        <button class="menu-btn" aria-label="Open menu" id="menuBtn">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="menu-panel" id="menuPanel">
+    <a href="#facilities">Facilities</a>
+    <a href="#plans">Plans</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#location">Location</a>
+    <a href="#location">Contact</a>
+    <div class="menu-actions">
+      <a class="btn btn-gold" href="tel:8100169994">Call Now</a>
+      <a class="btn btn-dark" href="https://wa.me/918100169994" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-media">
+        <img src="https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Gym workout at Dr. Fit Multi Gym and Fitness Studio">
+      </div>
+      <div class="hero-overlay"></div>
+
+      <div class="container hero-inner">
+        <div>
+          <div class="eyebrow reveal">Mahesh, Serampore • Multi Gym & Fitness Studio</div>
+          <h1 class="reveal">Build Strength. <br>Stay Consistent. <br><span>Train at Dr. Fit Multi Gym</span></h1>
+          <p class="hero-copy reveal">A premium local fitness space designed for serious workouts, better discipline, and visible progress — whether you are starting out or pushing for your next level.</p>
+          <div class="hero-actions reveal">
+            <a href="tel:8100169994" class="btn btn-gold">Call 8100169994</a>
+            <a href="#plans" class="btn btn-dark">View Plans</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat reveal"><strong>Flexible Hours</strong><span>Designed for daily training routines</span></div>
+            <div class="stat reveal"><strong>Personal Support</strong><span>Coach-guided training vibe</span></div>
+            <div class="stat reveal"><strong>Mahesh, Serampore</strong><span>Easy to find and visit</span></div>
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <div class="card reveal">
+            <p class="kicker">Why it stands out</p>
+            <h3>Built for people who want visible fitness results</h3>
+            <div class="list">
+              <div><span class="dot"></span> Multi-gym strength setup</div>
+              <div><span class="dot"></span> Disciplined and motivating environment</div>
+              <div><span class="dot"></span> Beginner to regular fitness support</div>
+              <div><span class="dot"></span> Focused training vibe</div>
+            </div>
+          </div>
+
+          <div class="card offer-card reveal">
+            <p class="kicker">Start strong</p>
+            <h3>Visit the studio. Feel the energy.</h3>
+            <p>Walk in, explore the gym floor, and choose the membership plan that matches your goal, schedule, and budget.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="facilities">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="kicker">Facilities</p>
+          <h2>Everything you need for a stronger routine.</h2>
+          <p>The right setup matters. Dr. Fit Multi Gym and Fitness Studio is presented as a modern local gym with strength equipment, coaching energy, and the kind of atmosphere that keeps members consistent.</p>
+        </div>
+
+        <div class="facilities">
+          <div class="feature reveal"><div class="feature-icon">01</div><strong>Strength Zone</strong><span>Free weights, benches, and core strength-training equipment for serious workouts.</span></div>
+          <div class="feature reveal"><div class="feature-icon">02</div><strong>Multi Gym Machines</strong><span>Machine-based workout support for balanced and targeted training.</span></div>
+          <div class="feature reveal"><div class="feature-icon">03</div><strong>Fitness Guidance</strong><span>Support with workout flow, form, and consistency for better progress.</span></div>
+          <div class="feature reveal"><div class="feature-icon">04</div><strong>Motivating Environment</strong><span>Clean, energetic surroundings that make daily training easier to maintain.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="plans">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="kicker">Plans</p>
+          <h2>Membership ideas for the demo site.</h2>
+          <p>These plans are shown as sample pricing for the demo website and can be replaced with the gym’s final membership fees anytime.</p>
+        </div>
+
+        <div class="plans">
+          <div class="plan reveal">
+            <small>Starter</small>
+            <h3>1 Month</h3>
+            <div class="plan-price">₹999</div>
+            <p>Good for first-time joiners who want to experience the gym and start building routine.</p>
+            <div class="list">
+              <div><span class="dot"></span> Gym access</div>
+              <div><span class="dot"></span> Basic guidance</div>
+              <div><span class="dot"></span> Flexible entry</div>
+            </div>
+          </div>
+
+          <div class="plan highlight reveal">
+            <small>Most Chosen</small>
+            <h3>3 Months</h3>
+            <div class="plan-price">₹2,499</div>
+            <p>Better value for people ready to commit long enough to see proper physical change.</p>
+            <div class="list">
+              <div><span class="dot"></span> Better savings</div>
+              <div><span class="dot"></span> Coach support</div>
+              <div><span class="dot"></span> Progress-focused</div>
+            </div>
+          </div>
+
+          <div class="plan reveal">
+            <small>Transformation</small>
+            <h3>6 Months</h3>
+            <div class="plan-price">₹4,499</div>
+            <p>For people who want more serious body work, consistency, and long-term discipline.</p>
+            <div class="list">
+              <div><span class="dot"></span> Best value</div>
+              <div><span class="dot"></span> Habit building</div>
+              <div><span class="dot"></span> Real result timeline</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="kicker">Visual vibe</p>
+          <h2>What the brand should feel like.</h2>
+          <p>This section is designed to sell atmosphere. It helps visitors imagine Dr. Fit as a premium, energetic gym brand online.</p>
+        </div>
+
+        <div class="mini-gallery">
+          <img class="reveal" src="https://images.pexels.com/photos/4164761/pexels-photo-4164761.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Weight training">
+          <img class="reveal" src="https://images.pexels.com/photos/5327534/pexels-photo-5327534.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Fitness coaching">
+          <img class="reveal" src="https://images.pexels.com/photos/6455772/pexels-photo-6455772.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Gym equipment area">
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="location">
+      <div class="container location-grid">
+        <div class="location-box reveal">
+          <p class="kicker">Location</p>
+          <h3>Find Dr. Fit Multi Gym and Fitness Studio in Mahesh, Serampore</h3>
+          <p>Strong local positioning matters. This section makes it easy for nearby customers to locate the gym, call directly, or open directions in one tap.</p>
+          <div class="address-lines">
+            <div>Dr. Fit Multi Gym and Fitness Studio</div>
+            <div>Ahana Apartment, 1, Sashi Bhusan Ghosh Ln</div>
+            <div>Mahesh, Nehru Nagar Colony, Mahesh Bose Para, Serampore, Hooghly, West Bengal 712201</div>
+            <div>Phone: 8100169994</div>
+          </div>
+          <div class="hero-actions" style="margin-top:18px;margin-bottom:0;">
+            <a href="https://maps.google.com/?q=Dr.%20Fit%20Multi%20Gym%20and%20Fitness%20Studio%2C%20Ahana%20Apartment%2C%201%2C%20Sashi%20Bhusan%20Ghosh%20Ln%2C%20Mahesh%2C%20Nehru%20Nagar%20Colony%2C%20Mahesh%20Bose%20Para%2C%20Serampore%2C%20Hooghly%2C%20West%20Bengal%20712201" target="_blank" rel="noopener" class="btn btn-dark">Open Map</a>
+            <a href="https://wa.me/918100169994" target="_blank" rel="noopener" class="btn btn-gold">WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="contact-stack">
+          <div class="contact-card reveal">
+            <p class="kicker">Hours</p>
+            <h3>Open daily</h3>
+            <p>Call or visit the gym for current opening hours and membership details.</p>
+          </div>
+          <div class="quote reveal">
+            <strong>Best for demo selling</strong>
+            <p>This homepage now sells trust, fitness atmosphere, location clarity, and strong first impressions — exactly what helps a local gym business look more premium online.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">Demo website concept for Dr. Fit Multi Gym and Fitness Studio • Designed to feel premium, mobile-first, and client-ready.</div>
+  </footer>
+
+  <div class="sticky-cta">
+    <a class="btn btn-gold" href="tel:8100169994">Call</a>
+    <a class="btn btn-dark" href="https://wa.me/918100169994" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const menuPanel = document.getElementById('menuPanel');
+
+    if (menuBtn && menuPanel) {
+      menuBtn.addEventListener('click', () => {
+        menuPanel.classList.toggle('open');
+      });
+
+      menuPanel.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => menuPanel.classList.remove('open'));
+      });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.16 });
+
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = `${Math.min(i * 0.05, 0.35)}s`;
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
